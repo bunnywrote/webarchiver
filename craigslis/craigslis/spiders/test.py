@@ -12,8 +12,13 @@ class TestSpyder(scrapy.Spider):
     allowed_domains = ["https://www.zalando.ch/"]
     start_urls = ["https://www.zalando.ch/herren-accessoires"]
 
+    def start_requests(self):
+        urls = self.start_urls
+        for url in urls:
+            yield scrapy.Request(url=url, callback=self.parse)
+
     def parse(self, response):
-        file_name = self.hash_url(response.url)
+        file_name = self.hash_url(response.url) + '.html'
         directory = 'testdir'
 
         if not os.path.exists(directory):

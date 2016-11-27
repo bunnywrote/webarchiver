@@ -12,3 +12,6 @@ class CraigslisItem(Item):
     title = Field()
     link = Field()
 
+class LinkItem(Item):
+    title = Field()
+    link = Field()
